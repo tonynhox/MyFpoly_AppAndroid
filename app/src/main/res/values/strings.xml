@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">MyFpolyApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">52700740590-t3uae4l11gjt5g38c8jbcnq5m6fg5v2v.apps.googleusercontent.com</string>
 </resources>
