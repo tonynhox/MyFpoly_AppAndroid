@@ -18,6 +18,7 @@ import com.example.myfpolyapp.adapters.NotificationAdapter;
 import com.example.myfpolyapp.models.NotificationModel;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -39,7 +40,7 @@ public class NotifiFragment extends Fragment {
         notificationAdapter = new NotificationAdapter(notificationList, new NotificationAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(NotificationModel notification) {
-                showDetailDialog(notification.getContents());
+                showDetailDialog(notification.getContent());
             }
         });
         recyclerView.setAdapter(notificationAdapter);
@@ -50,10 +51,10 @@ public class NotifiFragment extends Fragment {
     // Replace this method with your actual data source
     private List<NotificationModel> getNotificationData() {
         List<NotificationModel> data = new ArrayList<>();
-        data.add(new NotificationModel(1, "New Update Available", "Admin", "2023-08-03", "A new update is now available for download."));
-        data.add(new NotificationModel(2, "Important Announcement", "CEO", "2023-08-02", "We are pleased to announce a new project launch next week."));
-        data.add(new NotificationModel(3, "Upcoming Event", "Event Coordinator", "2023-08-05", "Don't forget to attend our annual company picnic on Saturday."));
 
+        data.add(new NotificationModel(1, "Notification 1", "11/1/2013", "John", "This is the content of notification 1."));
+        data.add(new NotificationModel(2, "Notification 2", "11/1/2013", "Jane", "This is the content of notification 2."));
+        data.add(new NotificationModel(3, "Notification 3", "11/1/2013", "Bob", "This is the content of notification 3."));
         return data;
     }
     private void showDetailDialog(String content) {

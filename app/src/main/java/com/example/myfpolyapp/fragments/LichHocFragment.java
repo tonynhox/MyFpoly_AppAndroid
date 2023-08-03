@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,11 +31,15 @@ public class LichHocFragment extends Fragment {
 
         recyclerView = rootView.findViewById(R.id.recyclerViewLichHoc);
 
+        Spinner dropdownPicker = rootView.findViewById(R.id.spnLichHoc);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(requireContext(),
+                R.array.lichhoc_options, R.layout.spinner_item_layout);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_custom); // Use the updated custom layout here
+        dropdownPicker.setAdapter(adapter);
+
         // Create a list of LichHocModel objects (sample data)
         List<LichHocModel> lichHocList = new ArrayList<>();
-        lichHocList.add(new LichHocModel(1, "G1", "101", "MATH101", "Mathematics", "Morning", "Monday", "John Doe", 1));
-        lichHocList.add(new LichHocModel(2, "G2", "201", "PHYS101", "Physics", "Afternoon", "Tuesday", "Jane Smith", 0));
-        // Add more sample data...
+        
 
         // Initialize the adapter with the data
         lichHocAdapter = new LichHocAdapter(lichHocList);

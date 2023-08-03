@@ -65,8 +65,8 @@
                 android:layout_marginTop="8dp">
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="4dp"
                     android:src="@drawable/lichhoc" />

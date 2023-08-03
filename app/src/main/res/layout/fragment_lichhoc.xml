@@ -1,23 +1,36 @@
-<!-- res/layout/fragment_notification.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECECEC">
 
+    <!-- Dropdown Picker -->
+    <Spinner
+        android:id="@+id/spnLichHoc"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/spinner_custom_background"
+        android:entries="@array/lichhoc_options"
+        android:padding="8dp" />
+
+    <!-- RecyclerView for the list -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewLichHoc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/spnLichHoc"
         android:padding="16dp" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@id/recyclerViewLichHoc"
-            android:background="@android:color/darker_gray"
-            tools:ignore="UnknownId" />
-
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/recyclerViewLichHoc"
+        android:background="@android:color/darker_gray"
+        tools:ignore="UnknownId" />
 
 </RelativeLayout>

@@ -2,25 +2,42 @@ package com.example.myfpolyapp.models;
 
 public class LichHocModel {
     private int id;
-    private String giangDuong;
-    private String phong;
-    private String maMon;
-    private String tenMon;
-    private String caHoc;
-    private String ngay;
-    private String tenGiangVien;
-    private int type; // New field for status
+    private String room;
+    private String day;
+    private String time;
+    private String course_name;
+    private String teacher_name;
+    private int type;
+    private String class_name;
+    private String address;
 
-    public LichHocModel(int id, String giangDuong, String phong, String maMon, String tenMon, String caHoc, String ngay, String tenGiangVien, int type) {
+    public LichHocModel(int id, String room, String day, String time, String course_name,
+                        String teacher_name, int type, String class_name, String address) {
         this.id = id;
-        this.giangDuong = giangDuong;
-        this.phong = phong;
-        this.maMon = maMon;
-        this.tenMon = tenMon;
-        this.caHoc = caHoc;
-        this.ngay = ngay;
-        this.tenGiangVien = tenGiangVien;
+        this.room = room;
+        this.day = day;
+        this.time = time;
+        this.course_name = course_name;
+        this.teacher_name = teacher_name;
         this.type = type;
+        this.class_name = class_name;
+        this.address = address;
+    }
+
+
+    @Override
+    public String toString() {
+        return "LichHocModel{" +
+                "id=" + id +
+                ", room='" + room + '\'' +
+                ", day=" + day +
+                ", time='" + time + '\'' +
+                ", course_name='" + course_name + '\'' +
+                ", teacher_name='" + teacher_name + '\'' +
+                ", type=" + type +
+                ", class_name='" + class_name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 
     public int getId() {
@@ -31,60 +48,44 @@ public class LichHocModel {
         this.id = id;
     }
 
-    public String getGiangDuong() {
-        return giangDuong;
+    public String getRoom() {
+        return room;
     }
 
-    public void setGiangDuong(String giangDuong) {
-        this.giangDuong = giangDuong;
+    public void setRoom(String room) {
+        this.room = room;
     }
 
-    public String getPhong() {
-        return phong;
+    public String getDay() {
+        return day;
     }
 
-    public void setPhong(String phong) {
-        this.phong = phong;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public String getMaMon() {
-        return maMon;
+    public String getTime() {
+        return time;
     }
 
-    public void setMaMon(String maMon) {
-        this.maMon = maMon;
+    public void setTime(String time) {
+        this.time = time;
     }
 
-    public String getTenMon() {
-        return tenMon;
+    public String getCourse_name() {
+        return course_name;
     }
 
-    public void setTenMon(String tenMon) {
-        this.tenMon = tenMon;
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
     }
 
-    public String getCaHoc() {
-        return caHoc;
+    public String getTeacher_name() {
+        return teacher_name;
     }
 
-    public void setCaHoc(String caHoc) {
-        this.caHoc = caHoc;
-    }
-
-    public String getNgay() {
-        return ngay;
-    }
-
-    public void setNgay(String ngay) {
-        this.ngay = ngay;
-    }
-
-    public String getTenGiangVien() {
-        return tenGiangVien;
-    }
-
-    public void setTenGiangVien(String tenGiangVien) {
-        this.tenGiangVien = tenGiangVien;
+    public void setTeacher_name(String teacher_name) {
+        this.teacher_name = teacher_name;
     }
 
     public int getType() {
@@ -93,5 +94,21 @@ public class LichHocModel {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public String getClass_name() {
+        return class_name;
+    }
+
+    public void setClass_name(String class_name) {
+        this.class_name = class_name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

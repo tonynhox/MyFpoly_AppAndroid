@@ -1,37 +1,70 @@
 package com.example.myfpolyapp.models;
 
+import java.util.Date;
+
 public class NotificationModel {
     private int id;
     private String title;
-    private String author;
-    private String date;
-    private String contents;
+    private String created_at;
+    private String namecreated;
+    private String content;
 
-    public NotificationModel(int id, String title, String author, String date, String contents) {
+    public NotificationModel(int id, String title, String created_at, String namecreated, String content) {
         this.id = id;
         this.title = title;
-        this.author = author;
-        this.date = date;
-        this.contents = contents;
+        this.created_at = created_at;
+        this.namecreated = namecreated;
+        this.content = content;
     }
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDate() {
-        return date;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public String getContents() {
-        return contents;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
+
+    public String getNamecreated() {
+        return namecreated;
+    }
+
+    public void setNamecreated(String namecreated) {
+        this.namecreated = namecreated;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "NotificationModel{" +
+//                "id=" + id +
+//                ", title='" + title + '\'' +
+//                ", created_at=" + created_at +
+//                ", namecreated='" + namecreated + '\'' +
+//                ", content='" + content + '\'' +
+//                '}';
+//    }
 }

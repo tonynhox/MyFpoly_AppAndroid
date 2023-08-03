@@ -125,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         String displayName = user.getDisplayName();
                         String avatarUrl = user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "";
+                        String userEmail = user.getEmail();
                         Toast.makeText(LoginActivity.this, displayName+"", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();

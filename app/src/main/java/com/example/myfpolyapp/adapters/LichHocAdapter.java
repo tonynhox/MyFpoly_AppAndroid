@@ -60,13 +60,13 @@ public class LichHocAdapter extends RecyclerView.Adapter<LichHocAdapter.LichHocV
         }
 
         public void bind(LichHocModel lichHoc) {
-            textNgay.setText(lichHoc.getNgay());
-            textGiangDuong.setText(lichHoc.getGiangDuong());
-            textPhong.setText(lichHoc.getPhong());
-            textMaMon.setText(lichHoc.getMaMon());
-            textTenMon.setText(lichHoc.getTenMon());
-            textCaHoc.setText(lichHoc.getCaHoc());
-            textTenGiangVien.setText(lichHoc.getTenGiangVien());
+            textNgay.setText(lichHoc.getDay());
+            textGiangDuong.setText(lichHoc.getAddress());
+            textPhong.setText(lichHoc.getRoom());
+            textMaMon.setText(lichHoc.getCourse_name());
+            textTenMon.setText(lichHoc.getCourse_name());
+            textCaHoc.setText(lichHoc.getTime());
+            textTenGiangVien.setText(lichHoc.getTeacher_name());
 
             // Bind the status field
 //            String statusText = "Status: " + lichHoc.getStatus();
