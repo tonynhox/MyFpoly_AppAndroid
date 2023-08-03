@@ -1,144 +1,140 @@
 package com.example.myfpolyapp.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myfpolyapp.MainActivity;
 import com.example.myfpolyapp.R;
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
-//import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-//import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-//import com.google.android.gms.common.SignInButton;
-//import com.google.android.gms.common.api.ApiException;
-//import com.google.android.gms.tasks.Task;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
-//    private GoogleSignInClient mGoogleSignInClient;
-    private static final int RC_SIGN_IN = 1;
-//    EditText edtCoSoSelect;
+    private static final String TAG = "LoginActivity";
+    private static final int RC_SIGN_IN = 9001;
+
+    private FirebaseAuth mAuth;
+    private GoogleSignInClient mGoogleSignInClient;
+
+    private Button btnGoogle,btnCSDT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        SharedPreferences prefs = getSharedPreferences("userdata",MODE_PRIVATE);
-//        String coso = prefs.getString("coso",null);
-//        String name = prefs.getString("name",null);
-//        String email = prefs.getString("email",null);
-//        String picture = prefs.getString("picture",null);
-//
-//        if (name != null){
-//            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-//            intent.putExtra("coso",coso);
-//            intent.putExtra("name",name);
-//            intent.putExtra("email",email);
-//            intent.putExtra("picture",picture);
-//            startActivity(intent);
-//        }
-//
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestEmail().build();
-//
-//        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
-//
-//        edtCoSoSelect = findViewById(R.id.edtCoSoSelect);
-//        edtCoSoSelect.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String[] chonCoSo = {"Hà Nội", "Hồ Chí Minh", "Cần Thơ", "Quy Nhơn", "Đà Nẵng"};
-//
-//                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-//                builder.setTitle("Chọn cơ sở");
-//                builder.setItems(chonCoSo, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        edtCoSoSelect.setText(chonCoSo[which]);
-//                    }
-//                });
-//                AlertDialog alertDialog = builder.create();
-//                alertDialog.show();
-//            }
-//        });
-//        SignInButton btnSignIn = findViewById(R.id.btnSignIn);
-//
-//        btnSignIn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-//                startActivityForResult(signInIntent,RC_SIGN_IN);
-//            }
-//        });
+        btnGoogle = findViewById(R.id.btnSignIn);
+        btnCSDT = findViewById(R.id.edtCoSoSelect);
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // Check if user is already signed in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // User is already signed in, handle the user data here.
+            String displayName = currentUser.getDisplayName();
+            String avatarUrl = currentUser.getPhotoUrl() != null ? currentUser.getPhotoUrl().toString() : "";
+
+            // Continue with your logic to handle the user data
+        }
+
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signInWithGoogle();
+            }
+        });
+
+        btnCSDT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+            }
+        });
     }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        //Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
-//        if (requestCode == RC_SIGN_IN){
-//            //The Task returned from this call is always completed, no need to attach a listen
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            handleSignInResult(task);
-//        }
-//    }
-//
-//    private void handleSignInResult(Task<GoogleSignInAccount> completeTask) {
-//        try {
-//            GoogleSignInAccount account = completeTask.getResult(ApiException.class);
-//            //Signed in successfully, show authenticated UI
-//            updateUI(account);
-//        }catch (ApiException e){
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void updateUI(GoogleSignInAccount account){
-//        if (account != null){
-//            String email = account.getEmail();
-//            String name = account.getDisplayName();
-//            String picture = String.valueOf(account.getPhotoUrl());
-//
-//            String coSo = edtCoSoSelect.getText().toString();
-//
-//            if (isValidFptEmail(email) && coSo.equals("Hồ Chí Minh")){
-//                SharedPreferences.Editor editor = getSharedPreferences("userdata",MODE_PRIVATE).edit();
-//                editor.putString("coso",coSo);
-//                editor.putString("name",account.getDisplayName());
-//                editor.putString("email",account.getEmail());
-//                editor.putString("picture",picture);
-//                editor.apply();
-//
-//                Intent intent = new Intent(this,MainActivity.class);
-//                intent.putExtra("coso",coSo);
-//                intent.putExtra("email",email);
-//                intent.putExtra("name",name);
-//                intent.putExtra("picture",picture);
-//                startActivity(intent);
-//            }else {
-//                Toast.makeText(this, "Invalid FPT email address or facilities", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
-//
-//    public boolean isValidFptEmail(String email) {
-//        //kiểm tra xem email có hợp lệ không
-//        if (email == null || email.isEmpty()){
-//            return false;
-//        }else {
-//            //kiểm tra email có kết thúc bằng @fpt.edu.vn
-//            if (email.endsWith("@fpt.edu.vn")){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                // Update your UI or perform any other tasks after signing out
+                Toast.makeText(LoginActivity.this, "Signed out successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void signInWithGoogle() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e);
+                Toast.makeText(this, "Google sign in failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+
+    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+        // Get the ID token from the GoogleSignInAccount object and exchange it for a Firebase credential
+        // using the GoogleAuthProvider class.
+        mAuth.signInWithCredential(GoogleAuthProvider.getCredential(acct.getIdToken(), null))
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String displayName = user.getDisplayName();
+                        String avatarUrl = user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "";
+                        Toast.makeText(LoginActivity.this, displayName+"", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                        // Continue with your logic to handle the user data
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+                        Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }
