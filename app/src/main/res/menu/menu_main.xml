@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/icHome"
+        android:title="Trang chủ"
+        android:icon="@drawable/ic_home"/>
+    <item
+        android:id="@+id/icGioiThieu"
+        android:title="Thông tin cá nhân"
+        android:icon="@drawable/ic_account"/>
+
+    <item
+        android:id="@+id/icKhenThuong"
+        android:title="Khen thưởng/ Kỷ luật"
+        android:icon="@drawable/ic_khenthuong"/>
+    <item
+        android:id="@+id/icSMS"
+        android:title="SMS"
+        android:icon="@drawable/ic_sms"/>
+
+    <item
+        android:id="@+id/icQuestion"
+        android:title="Câu hỏi thường gặp"
+        android:icon="@drawable/ic_question"/>
+    <item
+        android:id="@+id/updateAvatar"
+        android:title="Cập nhật ảnh thẻ"
+        android:icon="@drawable/ic_updateimg"/>
+    <item
+        android:id="@+id/icSetting"
+        android:title="Cài đặt"
+        android:icon="@drawable/ic_img"/>
+
+
+</menu>

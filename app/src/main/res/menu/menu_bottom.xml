@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/notificationBottom"
+        android:iconTint="#FF9700"
+        android:icon="@drawable/ic_home"
+        android:title="Trang chủ"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/scheduleBottom"
+        android:iconTint="#FF9700"
+        android:icon="@drawable/ic_canculator"
+        android:title="Lịch học"
+        app:showAsAction="ifRoom"
+        />
+<!--    <item-->
+<!--        android:id="@+id/qrScanBottom"-->
+<!--        android:iconTint="@color/black"-->
+<!--        android:icon="@drawable/ic_qr_code_scanner"-->
+<!--        android:title="QR Scan"-->
+<!--        app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/scoreBottom"
+        android:iconTint="#FF9700"
+        android:icon="@drawable/ic_grade"
+        android:title="Bảng điểm"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/libraryBottom"
+        android:iconTint="#FF9700"
+        android:icon="@drawable/ic_account"
+        android:title="Tiện ích"
+        app:showAsAction="ifRoom"/>
+</menu>

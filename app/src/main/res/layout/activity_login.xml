@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".activities.LoginActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="147dp"
+            android:layout_gravity="center"
+            android:src="@drawable/fpt_polytechnic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login Account"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome back!"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My"
+                    android:textSize="50sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="FPL"
+                    android:textColor="#F99602"
+                    android:textSize="60sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/edtCoSoSelect"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:text="Chọn cơ sở đào tạo"
+            android:textAllCaps="false"
+            android:textAlignment="center"
+            android:background="@drawable/edt_border"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textSize="15sp"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:inputType="none"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edt_border"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:paddingLeft="30dp"
+            android:drawableLeft="@drawable/googlelogo"
+            android:text="Login with Google"
+            />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hotline: 0987654321"
+        android:textColor="#636363"
+        android:textSize="16sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp" />
+
+
+</RelativeLayout>
