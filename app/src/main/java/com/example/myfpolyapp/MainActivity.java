@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.myfpolyapp.fragments.LibraryFrament;
+import com.example.myfpolyapp.fragments.LichHocFragment;
 import com.example.myfpolyapp.fragments.NotifiFragment;
 import com.example.myfpolyapp.fragments.QRScanFragment;
-import com.example.myfpolyapp.fragments.ScheduleFragment;
 import com.example.myfpolyapp.fragments.ScoreFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new NotifiFragment();
                 } else if (item.getItemId() == R.id.scheduleBottom) {
                     toolBar.setTitle("Lịch học");
-                    fragment = new ScheduleFragment();
+                    fragment = new LichHocFragment();
 //                } else if (item.getItemId() == R.id.qrScanBottom) {
 //                    toolBar.setTitle("QR Scan");
 //                    fragment = new QRScanFragment();

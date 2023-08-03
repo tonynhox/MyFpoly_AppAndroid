@@ -1,5 +1,6 @@
 package com.example.myfpolyapp.fragments;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,7 +36,12 @@ public class NotifiFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         List<NotificationModel> notificationList = getNotificationData(); // Replace with your data source
-        notificationAdapter = new NotificationAdapter(notificationList);
+        notificationAdapter = new NotificationAdapter(notificationList, new NotificationAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(NotificationModel notification) {
+                showDetailDialog(notification.getContents());
+            }
+        });
         recyclerView.setAdapter(notificationAdapter);
 
         return rootView;
@@ -49,5 +55,13 @@ public class NotifiFragment extends Fragment {
         data.add(new NotificationModel(3, "Upcoming Event", "Event Coordinator", "2023-08-05", "Don't forget to attend our annual company picnic on Saturday."));
 
         return data;
+    }
+    private void showDetailDialog(String content) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Nội dung chi tiết");
+        builder.setMessage(content);
+        builder.setPositiveButton("OK",null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
