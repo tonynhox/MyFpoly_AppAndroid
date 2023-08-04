@@ -1,0 +1,25 @@
+<!-- fragment_giangvien.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Label at the top -->
+    <TextView
+        android:id="@+id/textViewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:padding="16dp"
+        android:text="Bài viết"
+        android:textSize="18sp" />
+
+    <!-- RecyclerView to show the list of people -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCongDong"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewLabel"
+        android:padding="5dp" />
+
+</RelativeLayout>

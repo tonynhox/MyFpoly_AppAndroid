@@ -58,7 +58,6 @@ public class LichHocFragment extends Fragment {
         String BASE_URL = BaseUrl.BASE_URL; // Replace with your actual base URL
         Retrofit retrofit = RetrofitClient.getClient(BASE_URL);
 
-
         APIInterfaces apiService = retrofit.create(APIInterfaces.class);
         Call<LichHocAPIModel> call = apiService.getSchedules("MD17301", 1);
         call.enqueue(new Callback<LichHocAPIModel>() {
