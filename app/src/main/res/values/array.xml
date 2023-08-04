@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lichhoc_options">
-        <item>Option 1</item>
-        <item>Option 2</item>
-        <item>Option 3</item>
-        <item>Option 4</item>
+        <item>Hôm nay</item>
+        <item>Ngày mai</item>
+        <item>1 tuần sau</item>
+        <item>1 tháng sau</item>
     </string-array>
 </resources>

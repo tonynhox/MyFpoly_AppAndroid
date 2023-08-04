@@ -1,18 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ECECEC">
 
+    <!-- Dropdown Picker -->
     <Spinner
-        android:id="@+id/dropdownPicker"
-        android:layout_width="match_parent"
+        android:id="@+id/spnLichThi"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:padding="8dp"
+        android:background="@drawable/spinner_custom_background"
         android:entries="@array/lichhoc_options"
-        tools:ignore="MissingConstraints" />
+        android:padding="8dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- RecyclerView for the list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewLichThi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/spnLichThi"
+        android:padding="16dp" />
+
+    <!-- Divider -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/recyclerViewLichHoc"
+        android:background="@android:color/darker_gray"
+        tools:ignore="UnknownId" />
+
+</RelativeLayout>

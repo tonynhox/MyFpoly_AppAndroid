@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.Switch;
 
+import com.example.myfpolyapp.fragments.GiangVienFragment;
 import com.example.myfpolyapp.fragments.LibraryFrament;
 import com.example.myfpolyapp.fragments.LichHocFragment;
 import com.example.myfpolyapp.fragments.NotifiFragment;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 //                    fragment = new ScoreFragment();
                 } else {
 //                    toolBar.setTitle("Thư viện");
-                    fragment = new LibraryFrament();
+                    fragment = new GiangVienFragment();
                 }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frameLayout, fragment).commit();

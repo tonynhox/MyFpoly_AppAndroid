@@ -53,7 +53,7 @@ public class LichHocAdapter extends RecyclerView.Adapter<LichHocAdapter.LichHocV
             textNgay = itemView.findViewById(R.id.textNgay);
             textGiangDuong = itemView.findViewById(R.id.textGiangDuong);
             textPhong = itemView.findViewById(R.id.textPhong);
-            textMaMon = itemView.findViewById(R.id.textMaMon);
+//            textMaMon = itemView.findViewById(R.id.textMaMon);
             textTenMon = itemView.findViewById(R.id.textTenMon);
             textCaHoc = itemView.findViewById(R.id.textCaHoc);
             textTenGiangVien = itemView.findViewById(R.id.textTenGiangVien);
@@ -63,7 +63,7 @@ public class LichHocAdapter extends RecyclerView.Adapter<LichHocAdapter.LichHocV
             textNgay.setText(lichHoc.getDay());
             textGiangDuong.setText(lichHoc.getAddress());
             textPhong.setText(lichHoc.getRoom());
-            textMaMon.setText(lichHoc.getCourse_name());
+//            textMaMon.setText(lichHoc.getCourse_name());
             textTenMon.setText(lichHoc.getCourse_name());
             textCaHoc.setText(lichHoc.getTime());
             textTenGiangVien.setText(lichHoc.getTeacher_name());
