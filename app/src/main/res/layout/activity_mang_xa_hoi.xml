@@ -2,25 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FF993A"
             android:fitsSystemWindows="true">
+
             <ImageButton
                 android:id="@+id/btnGoback"
                 android:layout_width="25sp"
                 android:layout_height="25sp"
-                android:background="@drawable/arrow"
-                android:scaleX="-1"
                 android:layout_marginRight="20dp"
-                />
+                android:background="@drawable/arrow"
+                android:scaleX="-1" />
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -31,67 +32,66 @@
                 android:layout_marginBottom="8dp">
 
 
-
                 <ImageView
                     android:id="@+id/navigation_icon"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/avatar_circle"
-                    android:background="@drawable/avatar_circle" />
+                    android:background="@drawable/avatar_circle"
+                    android:src="@drawable/avatar_circle" />
 
 
             </FrameLayout>
+
             <TextView
                 android:id="@+id/txtFulName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Nguyễn Ngọc Chấn"
-                android:textSize="16sp"
                 android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            >
+            android:padding="16dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Thông tin"
+                android:textColor="#000"
                 android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                />
-            <TextView
-                android:paddingTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="is an operational business division of the British Broadcasting Corporation responsible for the gathering and broadcasting of news and current affairs."
-                android:textSize="14sp"
-                android:textColor="#000"
-                android:justificationMode="inter_word"
-                />
-            <TextView
-                android:paddingTop="22dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Bài viết"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_marginBottom="30dp"
-                />
+                android:textStyle="bold" />
 
-<!--            -->
-            <LinearLayout
-                android:orientation="vertical"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:justificationMode="inter_word"
+                android:paddingTop="5dp"
+                android:text="Thầy Chấn là một người đẹp trai, dạy hay, tận tụy, em đã khóc khi được học với thầy."
+                android:textColor="#000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:paddingTop="22dp"
+                android:text="Bài viết"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!--            -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,41 +101,40 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_margin="8dp"
-                        >
+                        android:layout_margin="8dp">
 
                         <ImageView
                             android:id="@+id/avatarImageView1"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/qr_code"
                             android:scaleType="centerCrop"
-                            />
+                            android:src="@drawable/thayc" />
 
                     </androidx.cardview.widget.CardView>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginStart="8dp">
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/ownerNameTextView1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nguyễn Ngọc Chấn"
-                            android:textStyle="bold"
                             android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/createdAtTextView1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
                             android:text="3 hours ago"
                             android:textColor="#888888"
-                            android:textSize="12sp"
-                            android:layout_gravity="bottom" />
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -145,79 +144,78 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/postTitleTextView1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Post Title"
-                        android:textStyle="bold"
+                        android:text="Tin chấn động về thầy Chấn"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/postContentTextView1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is the post content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut odio eget urna tincidunt malesuada."
+                        android:layout_marginVertical="8dp"
+                        android:text="Sốc hình ảnh thầy Chấn giơ tay chào học sinh."
                         android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginVertical="8dp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="@color/black"
-
-                        />
+                        android:src="@drawable/thayc" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_margin="8dp"
-                        >
+                        android:layout_margin="8dp">
 
                         <ImageView
                             android:id="@+id/avatarImageView"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/qr_code"
                             android:scaleType="centerCrop"
-                            />
+                            android:src="@drawable/thayc" />
 
                     </androidx.cardview.widget.CardView>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginStart="8dp">
+                        android:layout_marginStart="8dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/ownerNameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Nguyễn Ngọc Chấn"
-                            android:textStyle="bold"
                             android:textColor="#000000"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/createdAtTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
                             android:text="3 hours ago"
                             android:textColor="#888888"
-                            android:textSize="12sp"
-                            android:layout_gravity="bottom" />
+                            android:textSize="12sp" />
 
                     </LinearLayout>
 
@@ -227,40 +225,39 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/postTitleTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Post Title"
-                        android:textStyle="bold"
+                        android:text="Thật không thể tin được"
                         android:textColor="#000000"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/postContentTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="This is the post content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut odio eget urna tincidunt malesuada."
+                        android:layout_marginVertical="8dp"
+                        android:text="Tin nóng hổi hình ảnh mới nhất của thầy Chấn"
                         android:textColor="#000000"
-                        android:textSize="14sp"
-                        android:layout_marginVertical="8dp" />
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:background="@color/black"
-
-                        />
+                        android:src="@drawable/thayc" />
 
                 </LinearLayout>
             </LinearLayout>
 
-<!--            <ListView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"/>-->
+            <!--            <ListView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"/>-->
 
 
         </LinearLayout>

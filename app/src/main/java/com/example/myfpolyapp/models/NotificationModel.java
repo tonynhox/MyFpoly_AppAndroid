@@ -57,14 +57,14 @@ public class NotificationModel {
         this.content = content;
     }
 
-//    @Override
-//    public String toString() {
-//        return "NotificationModel{" +
-//                "id=" + id +
-//                ", title='" + title + '\'' +
-//                ", created_at=" + created_at +
-//                ", namecreated='" + namecreated + '\'' +
-//                ", content='" + content + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "NotificationModel{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", created_at='" + created_at + '\'' +
+                ", namecreated='" + namecreated + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

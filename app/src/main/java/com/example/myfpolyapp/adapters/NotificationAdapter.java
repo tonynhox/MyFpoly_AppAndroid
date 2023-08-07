@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +16,10 @@ import java.util.List;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
     private List<NotificationModel> notificationList;
-    private OnItemClickListener listener; // Added listener
+    private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(NotificationModel notification);
+        void onItemClick(NotificationModel notification, int id);
     }
 
     public NotificationAdapter(List<NotificationModel> notificationList, OnItemClickListener listener) {
@@ -36,7 +37,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         NotificationModel notification = notificationList.get(position);
-        holder.bind(notification, listener); // Pass listener to the bind method
+        holder.bind(notification, listener);
     }
 
     @Override
@@ -63,11 +64,11 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             textAuthor.setText(notification.getNamecreated());
             textDate.setText(notification.getCreated_at());
 
-            // Set OnClickListener to the whole item
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(notification);
+                    int id = notification.getId();
+                    listener.onItemClick(notification, id);
                 }
             });
         }

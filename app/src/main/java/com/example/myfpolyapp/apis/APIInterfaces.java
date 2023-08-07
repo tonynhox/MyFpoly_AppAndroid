@@ -1,6 +1,7 @@
 package com.example.myfpolyapp.apis;
 
 import com.example.myfpolyapp.models.GiangVienAPIModel;
+import com.example.myfpolyapp.models.InfoDetailApiModel;
 import com.example.myfpolyapp.models.LichHocAPIModel;
 import com.example.myfpolyapp.models.NotifiAPIModel;
 import com.example.myfpolyapp.models.UserAPIModel;
@@ -30,4 +31,7 @@ public interface APIInterfaces{
 
     @GET("infomation/api-get-infomation.php") // Replace "notifications" with the actual API endpoint for notifications.
     Call<GiangVienAPIModel> getAllInfor();
+
+    @GET("post/get-post-detail.php")
+    Call<InfoDetailApiModel> getInfoById(@Query("id") int id);
 }

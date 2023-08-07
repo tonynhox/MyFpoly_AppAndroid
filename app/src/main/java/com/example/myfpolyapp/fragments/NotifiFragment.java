@@ -2,17 +2,16 @@ package com.example.myfpolyapp.fragments;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.myfpolyapp.R;
 import com.example.myfpolyapp.adapters.NotificationAdapter;
@@ -21,8 +20,6 @@ import com.example.myfpolyapp.constants.BaseUrl;
 import com.example.myfpolyapp.models.NotifiAPIModel;
 import com.example.myfpolyapp.models.NotificationModel;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,12 +28,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
-public class NotifiFragment extends Fragment {
+public class NotifiFragment extends Fragment implements NotificationAdapter.OnItemClickListener {
 
     private RecyclerView recyclerView;
     private NotificationAdapter notificationAdapter;
-
     private List<NotificationModel> notificationList;
 
     @Nullable
@@ -81,30 +76,41 @@ public class NotifiFragment extends Fragment {
 
             @Override
             public void onFailure(Call<NotifiAPIModel> call, Throwable t) {
-                Log.e("ERRRRRRR: ", t.toString());
+                // Handle the failure.
             }
 
         });
     }
 
-
-
     private void setupRecyclerView() {
-        notificationAdapter = new NotificationAdapter(notificationList, new NotificationAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(NotificationModel notification) {
-                showDetailDialog(notification.getContent());
-            }
-        });
-
+        notificationAdapter = new NotificationAdapter(notificationList, this);
         recyclerView.setAdapter(notificationAdapter);
     }
 
-    private void showDetailDialog(String content) {
+    @Override
+    public void onItemClick(NotificationModel notification, int id) {
+        // ID Ở ĐÂY NÈ EM
+//        showDetailDialog(notification.getContent(), id);
+        try {
+            InfoDetailFragment infoDetailFragment = new InfoDetailFragment();
+            Bundle args = new Bundle();
+            args.putInt("info_id", id); // Replace id with the actual ID you want to fetch details for
+            infoDetailFragment.setArguments(args);
+            requireActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frameLayout, infoDetailFragment)
+                    .addToBackStack(null)
+                    .commit();
+        } catch (Exception e) {
+            Log.e("ERROR: ", e.toString());
+        }
+
+    }
+
+    private void showDetailDialog(String content, int id) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Nội dung chi tiết");
-        builder.setMessage(content);
-        builder.setPositiveButton("OK",null);
+        builder.setMessage("ID: " + id + "\nContent: " + content);
+        builder.setPositiveButton("OK", null);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
