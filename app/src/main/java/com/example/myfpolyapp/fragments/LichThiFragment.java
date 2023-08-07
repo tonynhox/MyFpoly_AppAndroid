@@ -1,6 +1,7 @@
 package com.example.myfpolyapp.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfpolyapp.R;
+import com.example.myfpolyapp.activities.LoginActivity;
 import com.example.myfpolyapp.adapters.LichHocAdapter;
+import com.example.myfpolyapp.apis.APIInterfaces;
+import com.example.myfpolyapp.apis.RetrofitClient;
+import com.example.myfpolyapp.constants.BaseUrl;
+import com.example.myfpolyapp.models.LichHocAPIModel;
 import com.example.myfpolyapp.models.LichHocModel;
+import com.example.myfpolyapp.models.UserModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LichThiFragment extends Fragment {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
+public class LichThiFragment extends Fragment {
     private RecyclerView recyclerView;
     private LichHocAdapter lichHocAdapter;
 
@@ -38,26 +48,52 @@ public class LichThiFragment extends Fragment {
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_custom); // Use the updated custom layout here
         dropdownPicker.setAdapter(adapter);
 
-        // Create a list of LichHocModel objects (sample data)
-        LichHocModel lichHoc1 = new LichHocModel(1, "Room A", "Monday", "10:00 AM - 12:00 PM", "Mathematics", "John Doe", 1, "Class A", "123 Main St");
-        LichHocModel lichHoc2 = new LichHocModel(2, "Room B", "Tuesday", "2:00 PM - 4:00 PM", "Science", "Jane Smith", 2, "Class B", "456 Oak Ave");
-        LichHocModel lichHoc3 = new LichHocModel(3, "Room C", "Wednesday", "1:00 PM - 3:00 PM", "History", "Michael Johnson", 1, "Class C", "789 Elm St");
+        // Fetch data using Retrofit
+        UserModel userAPIModel = new UserModel();
 
-// Add the instances to the lichHocList
-        List<LichHocModel> lichHocList = new ArrayList<>();
-        lichHocList.add(lichHoc1);
-        lichHocList.add(lichHoc2);
-        lichHocList.add(lichHoc3);
+        fetchLichHocData(userAPIModel.getCourse());
+        return rootView;
+    }
+
+    private void fetchLichHocData(String class_name) {
+        String BASE_URL = BaseUrl.BASE_URL; // Replace with your actual base URL
+        Retrofit retrofit = RetrofitClient.getClient(BASE_URL);
+
+        APIInterfaces apiService = retrofit.create(APIInterfaces.class);
+        Call<LichHocAPIModel> call = apiService.getSchedules(LoginActivity.data.getCourse(),0);
+        call.enqueue(new Callback<LichHocAPIModel>() {
+            @Override
+            public void onResponse(Call<LichHocAPIModel> call, Response<LichHocAPIModel> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    LichHocAPIModel lichHocAPIModel = response.body();
+                    List<LichHocModel> lichHocList = lichHocAPIModel.getData();
+//                    Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show();
+                    Log.d("ok: ", lichHocList.toString());
+
+                    setupRecyclerView(lichHocList);
+                } else {
+                    // Handle the error response here
+                    Log.d("ok",response.toString());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LichHocAPIModel> call, Throwable t) {
+                // Handle the failure
+                Log.e("huy: ", t.toString());
+            }
+        });
+    }
 
 
-        // Initialize the adapter with the data
+    private void setupRecyclerView(List<LichHocModel> lichHocList) {
+        // Initialize the adapter with the fetched data
         lichHocAdapter = new LichHocAdapter(lichHocList);
 
         // Set the layout manager and adapter to the RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(lichHocAdapter);
-
-        return rootView;
     }
-
 }

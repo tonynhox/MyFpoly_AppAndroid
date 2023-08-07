@@ -15,21 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myfpolyapp.R;
+import com.example.myfpolyapp.activities.LoginActivity;
 import com.example.myfpolyapp.adapters.LichHocAdapter;
 import com.example.myfpolyapp.apis.APIInterfaces;
 import com.example.myfpolyapp.apis.RetrofitClient;
 import com.example.myfpolyapp.constants.BaseUrl;
 import com.example.myfpolyapp.models.LichHocAPIModel;
 import com.example.myfpolyapp.models.LichHocModel;
+import com.example.myfpolyapp.models.UserModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LichHocFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -49,36 +49,40 @@ public class LichHocFragment extends Fragment {
         dropdownPicker.setAdapter(adapter);
 
         // Fetch data using Retrofit
-        fetchLichHocData();
+        UserModel userAPIModel = new UserModel();
 
+        fetchLichHocData(userAPIModel.getCourse());
         return rootView;
     }
 
-    private void fetchLichHocData() {
+    private void fetchLichHocData(String class_name) {
         String BASE_URL = BaseUrl.BASE_URL; // Replace with your actual base URL
         Retrofit retrofit = RetrofitClient.getClient(BASE_URL);
 
         APIInterfaces apiService = retrofit.create(APIInterfaces.class);
-        Call<LichHocAPIModel> call = apiService.getSchedules("MD17301", 1);
+        Call<LichHocAPIModel> call = apiService.getSchedules(LoginActivity.data.getCourse(),1);
         call.enqueue(new Callback<LichHocAPIModel>() {
             @Override
             public void onResponse(Call<LichHocAPIModel> call, Response<LichHocAPIModel> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     LichHocAPIModel lichHocAPIModel = response.body();
                     List<LichHocModel> lichHocList = lichHocAPIModel.getData();
-                    Log.e("Error Response: ", response.toString());
+//                    Toast.makeText(requireContext(), "ok", Toast.LENGTH_SHORT).show();
+                    Log.d("ok: ", lichHocList.toString());
 
                     setupRecyclerView(lichHocList);
                 } else {
                     // Handle the error response here
-                    Log.e("Error Response: ", response.errorBody().toString());
+                    Log.d("ok",response.toString());
+
                 }
+
             }
 
             @Override
             public void onFailure(Call<LichHocAPIModel> call, Throwable t) {
                 // Handle the failure
-                Log.e("API Failure: ", t.toString());
+                Log.e("huy: ", t.toString());
             }
         });
     }

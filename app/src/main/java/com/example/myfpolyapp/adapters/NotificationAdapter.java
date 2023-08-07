@@ -56,14 +56,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             textTitle = itemView.findViewById(R.id.textTitle);
             textAuthor = itemView.findViewById(R.id.textAuthor);
             textDate = itemView.findViewById(R.id.textDate);
-            textContents = itemView.findViewById(R.id.textContents);
         }
 
         public void bind(NotificationModel notification, OnItemClickListener listener) {
             textTitle.setText(notification.getTitle());
             textAuthor.setText(notification.getNamecreated());
             textDate.setText(notification.getCreated_at());
-            textContents.setText(notification.getContent());
 
             // Set OnClickListener to the whole item
             itemView.setOnClickListener(new View.OnClickListener() {

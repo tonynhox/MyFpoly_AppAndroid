@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:actionMenuTextColor">#FF9700</item>
+        <item name="android:statusBarColor">#FF9700</item>
 
     </style>
 

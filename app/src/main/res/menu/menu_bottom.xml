@@ -20,12 +20,12 @@
         android:icon="@drawable/qr_code"
         android:title="QR Scan"
         app:showAsAction="ifRoom"/>
-<!--    <item-->
-<!--        android:id="@+id/scoreBottom"-->
-<!--        android:iconTint="#FF9700"-->
-<!--        android:icon="@drawable/ic_grade"-->
-<!--        android:title="Bảng điểm"-->
-<!--        app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/scoreBottom"
+        android:iconTint="#FF9700"
+        android:icon="@drawable/ic_grade"
+        android:title="Bảng điểm"
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/libraryBottom"
         android:iconTint="#FF9700"

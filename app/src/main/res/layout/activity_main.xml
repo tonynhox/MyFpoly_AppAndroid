@@ -12,31 +12,72 @@
         android:background="@android:color/transparent"
         android:orientation="vertical"
         android:padding="0dp">
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolBar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="#FF993A"-->
-<!--            android:fitsSystemWindows="true"-->
-<!--            app:title="@null"/>-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF993A"
+            android:fitsSystemWindows="true"
+            app:title="@null">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/navigation_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/avatar_circle"
+                    android:background="@drawable/avatar_circle" />
+
+
+            </FrameLayout>
+            <TextView
+                android:id="@+id/txtFulName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Tran Anh Huy"
+                android:textSize="14sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
 
         <FrameLayout
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <com.etebarian.meowbottomnavigation.MeowBottomNavigation
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/white"
-            app:itemIconTint="@animator/selector_icon_color"
-            app:itemTextColor="#FF9700"
-            app:labelVisibilityMode="selected"
-            app:itemRippleColor="#FFE5BE"
-            app:menu="@menu/menu_bottom" />
+            app:mbn_circleColor="#FF9700"
+            app:mbn_backgroundBottomColor="#FFE5BE"
+            app:mbn_countBackgroundColor="#ff6f00"
+            app:mbn_countTextColor="#ffffff"
+            app:mbn_defaultIconColor="#FF9700"
+            app:mbn_rippleColor="#000"
+            app:mbn_selectedIconColor="#fff"
+            app:mbn_shadowColor="#1f212121"
+            />
+
+
+        <!--            android:layout_gravity="bottom"-->
+<!--            android:background="@color/white"-->
+<!--            app:itemIconTint="@animator/selector_icon_color"-->
+<!--            app:itemTextColor="#FF9700"-->
+<!--            app:labelVisibilityMode="selected"-->
+<!--            app:itemRippleColor="#FFE5BE"-->
+<!--            app:menu="@menu/menu_bottom" -->
 
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
@@ -49,5 +90,6 @@
         android:padding="0dp"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_main"/>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

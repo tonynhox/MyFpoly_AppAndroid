@@ -7,29 +7,40 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myfpolyapp.MainActivity;
 import com.example.myfpolyapp.R;
+import com.example.myfpolyapp.apis.APIInterfaces;
+import com.example.myfpolyapp.apis.RetrofitClient;
+import com.example.myfpolyapp.constants.BaseUrl;
+import com.example.myfpolyapp.models.UserAPIModel;
+import com.example.myfpolyapp.models.UserModel;
+import com.example.myfpolyapp.models.UserRequestBody;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignInClient;
+    public static UserModel data;
+    public static FirebaseAuth mAuth;
+    public static GoogleSignInClient mGoogleSignInClient;
 
     private Button btnGoogle,btnCSDT;
 
@@ -51,15 +62,6 @@ public class LoginActivity extends AppCompatActivity {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        // Check if user is already signed in
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            // User is already signed in, handle the user data here.
-            String displayName = currentUser.getDisplayName();
-            String avatarUrl = currentUser.getPhotoUrl() != null ? currentUser.getPhotoUrl().toString() : "";
-
-            // Continue with your logic to handle the user data
-        }
 
         btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,23 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         btnCSDT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOut();
+//                signOut();
             }
         });
     }
-    private void signOut() {
-        // Firebase sign out
-        mAuth.signOut();
 
-        // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                // Update your UI or perform any other tasks after signing out
-                Toast.makeText(LoginActivity.this, "Signed out successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     private void signInWithGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -121,14 +111,13 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         String displayName = user.getDisplayName();
                         String avatarUrl = user.getPhotoUrl() != null ? user.getPhotoUrl().toString() : "";
                         String userEmail = user.getEmail();
                         Toast.makeText(LoginActivity.this, displayName+"", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                        fetchUser(userEmail,displayName,avatarUrl);
+
                         // Continue with your logic to handle the user data
                     } else {
                         // If sign in fails, display a message to the user.
@@ -136,6 +125,48 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void fetchUser(String email,String name,String avatar) {
+        String BASE_URL = BaseUrl.BASE_URL; // Replace with your actual base URL
+        Retrofit retrofit = RetrofitClient.getClient(BASE_URL);
+        UserRequestBody requestBody = new UserRequestBody(email, name, avatar);
+
+        APIInterfaces apiService = retrofit.create(APIInterfaces.class);
+        Call<UserAPIModel> call = apiService.createUser(requestBody);
+        call.enqueue(new Callback<UserAPIModel>() {
+            @Override
+            public void onResponse(Call<UserAPIModel> call, Response<UserAPIModel> response) {
+                try {
+                    if (response.isSuccessful() && response.body() != null) {
+//                    LichHocAPIModel lichHocAPIModel = response.body();
+//                    List<LichHocModel> lichHocList = lichHocAPIModel.getData();
+                        UserAPIModel userAPIModel = response.body();
+                        UserModel user = userAPIModel.getUserModel();
+                        data = user; //?????????????????? bi nguuu à th lol android
+                        Toast.makeText(LoginActivity.this, "User ID: " + data.getName(), Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        finish();
+                } else {
+                    // Handle the error response here
+                    Log.d("ok",response.toString());
+
+                }
+
+                }catch (Exception e){
+                    Log.d("loi roi",e.toString());
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<UserAPIModel> call, Throwable t) {
+                // Handle the failure
+                Log.e("errorr: ", t.toString());
+            }
+        });
     }
 
 }

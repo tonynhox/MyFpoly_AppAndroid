@@ -8,13 +8,17 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF7300"
+        android:background="#FFFFFF"
         android:elevation="4dp"
-        app:tabTextColor="@color/white"
+        app:tabTextColor="#FF8C39"
+        app:tabIndicatorColor="#FF8C39"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicator="@drawable/tablayout_custom"
         />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
+        android:outlineSpotShadowColor="#FF8C39"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tabLayout" />

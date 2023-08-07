@@ -1,18 +1,23 @@
 package com.example.myfpolyapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myfpolyapp.MainActivity;
 import com.example.myfpolyapp.R;
+import com.example.myfpolyapp.activities.LoginActivity;
+import com.example.myfpolyapp.activities.MangXaHoiActivity;
 import com.example.myfpolyapp.models.GiangVienModel;
 
 import java.util.List;
@@ -45,6 +50,14 @@ public class GiangVienAdapter extends RecyclerView.Adapter<GiangVienAdapter.View
                 .centerCrop()
                 .into(holder.imageViewGiangvien);
         holder.buttonFollow.setText(giangvien.getStatus() == 1 ? "Following" : "Follow");
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MangXaHoiActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
 
         // You can set click listeners for the button here if needed.
     }
@@ -58,12 +71,15 @@ public class GiangVienAdapter extends RecyclerView.Adapter<GiangVienAdapter.View
         private ImageView imageViewGiangvien;
         private TextView textViewName;
         private Button buttonFollow;
+        private LinearLayout cardView;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageViewGiangvien = itemView.findViewById(R.id.imageViewGiangvien);
             textViewName = itemView.findViewById(R.id.textViewName);
             buttonFollow = itemView.findViewById(R.id.buttonFollow);
+            cardView = itemView.findViewById(R.id.cardView);
         }
     }
 }

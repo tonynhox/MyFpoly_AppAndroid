@@ -1,19 +1,17 @@
 package com.example.myfpolyapp.apis;
 
 import com.example.myfpolyapp.models.GiangVienAPIModel;
-import com.example.myfpolyapp.models.GiangVienModel;
 import com.example.myfpolyapp.models.LichHocAPIModel;
 import com.example.myfpolyapp.models.NotifiAPIModel;
-import com.example.myfpolyapp.models.NotificationModel;
-import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
-
-import java.util.List;
+import com.example.myfpolyapp.models.UserAPIModel;
+import com.example.myfpolyapp.models.UserModel;
+import com.example.myfpolyapp.models.UserRequestBody;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
-import retrofit2.http.QueryName;
 
 public interface APIInterfaces{
 
@@ -25,6 +23,10 @@ public interface APIInterfaces{
             @Query("class_name") String className,
             @Query("type") int type
     );
+
+    @POST("login/login.php")
+    Call<UserAPIModel> createUser(@Body UserRequestBody requestBody);
+
 
     @GET("infomation/api-get-infomation.php") // Replace "notifications" with the actual API endpoint for notifications.
     Call<GiangVienAPIModel> getAllInfor();
